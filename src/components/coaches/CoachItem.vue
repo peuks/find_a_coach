@@ -44,17 +44,17 @@ export default {
     },
     /**
      * @returns String
-     * @eg /coaches/c1
-     */
-    coachDetailsLink() {
-      return `${this.$route.path}/${this.id}`;
-    },
-    /**
-     * @returns String
      * @eg coaches/c1/contact
      */
     coachContactLink() {
-      return `${this.$route.path}/${this.id}/contact"`;
+      return this.$route.path + "/" + this.id + "/contact"; // /coaches/c1/contact
+    },
+    /**
+     * @returns String
+     * @eg /coaches/c1
+     */
+    coachDetailsLink() {
+      return this.$route.path + "/" + this.id; // /coaches/c1
     },
   },
 };

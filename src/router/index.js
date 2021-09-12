@@ -13,6 +13,8 @@ const routes = [
   { path: "/coaches", name: "Coaches", component: CoachesList },
   {
     path: "/coaches/:id",
+    // with pros: true the :id will be set as a props in CoachDetail.vue
+    props: true,
     name: "Coache",
     component: CoachDetail,
     children: [{ path: "contact", component: ContactCoach }],
