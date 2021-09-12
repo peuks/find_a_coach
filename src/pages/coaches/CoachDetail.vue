@@ -68,7 +68,6 @@ export default {
       return this.selectedCoach.description;
     },
     contactLink() {
-      console.log(this.$route.path);
       return `${this.$route.path}/${this.id}/contact"`;
     },
   },
