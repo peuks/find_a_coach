@@ -2,11 +2,8 @@
   <section>
     <base-card>
       <header>
-        <h2>
-          Requests Received
-        </h2>
+        <h2>Requests Received</h2>
       </header>
-
       <ul v-if="hasRequests">
         <request-item
           v-for="req in receivedRequests"
@@ -15,23 +12,24 @@
           :message="req.message"
         ></request-item>
       </ul>
-
-      <h3 v-else>
-        You haven't received any requests yet !
-      </h3>
+      <h3 v-else>You haven't received any requests yet!</h3>
     </base-card>
   </section>
 </template>
 
 <script>
 import RequestItem from "../../components/requests/RequestItem.vue";
+
 export default {
-  components: { RequestItem },
+  components: {
+    RequestItem,
+  },
   computed: {
     receivedRequests() {
       return this.$store.getters["requests/requests"];
     },
     hasRequests() {
+      console.log(this.$store.getters["requests/hasRequests"]);
       return this.$store.getters["requests/hasRequests"];
     },
   },
