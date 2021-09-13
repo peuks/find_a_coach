@@ -30,8 +30,6 @@ export default {
     submitForm() {
       this.formIsValid = true;
       if (
-        // Email Validation sucks here
-        // Can do way better than that
         this.email === "" ||
         !this.email.includes("@") ||
         this.message === ""
@@ -42,10 +40,8 @@ export default {
       this.$store.dispatch("requests/contactCoach", {
         email: this.email,
         message: this.message,
-        // Another way to get the id
-        coachId: this.$route.params.id,
+        coachId: this.$route.id,
       });
-      // With replace we can not go back to the form
       this.$router.replace("/coaches");
     },
   },

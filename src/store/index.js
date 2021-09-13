@@ -5,10 +5,12 @@ import requestsModule from "./module/requests/index.js";
 const store = createStore({
   modules: {
     coaches: coachesModule,
-    request: requestsModule,
+    requests: requestsModule,
   },
-  state: {
-    userId: "c3",
+  state() {
+    return {
+      userId: "c3",
+    };
   },
   getters: {
     userId(state) {
