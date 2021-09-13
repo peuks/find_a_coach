@@ -42,8 +42,10 @@ export default {
       this.$store.dispatch("requests/contactCoach", {
         email: this.email,
         message: this.message,
+        // Another way to get the id
         coachId: this.$route.params.id,
       });
+      // With replace we can not go back to the form
       this.$router.replace("/coaches");
     },
   },
