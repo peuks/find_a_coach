@@ -40,7 +40,8 @@ export default {
       this.$store.dispatch("requests/contactCoach", {
         email: this.email,
         message: this.message,
-        coachId: this.$route.id,
+        // A noter way to get params from route
+        coachId: this.$route.params.id,
       });
       this.$router.replace("/coaches");
     },
