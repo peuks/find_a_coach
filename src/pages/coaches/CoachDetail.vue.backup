@@ -11,17 +11,22 @@
         <h2>Interested? Reach out now!</h2>
         <base-button link :to="contactLink">Contact</base-button>
       </header>
-      <router-view></router-view>
+      <router-view>
+        <!--  Contact page will be rendered here-->
+      </router-view>
     </base-card>
   </section>
   <section>
     <base-card>
+      <!--
+         areas is not defined. We can use selectedCoach.ares or set a computed function to return areas from selectedCoach
+         -->
       <base-badge
         v-for="area in areas"
         :key="area"
         :type="area"
         :title="area"
-      ></base-badge>
+      />
       <p>{{ description }}</p>
     </base-card>
   </section>
@@ -34,11 +39,20 @@ export default {
   // Cheack router.js for more details
   props: ["id"],
   data() {
-    // All data has to be fetched with Vuex WHEN the component is created
-    // ( check created )
     return {
+      // All data has to be fetched with Vuex WHEN the component is created
+      // ( check created )
       selectedCoach: null,
     };
+  },
+  created() {
+    // selectedCoach will be hydrated with data included the store
+    // check Data in coaches namespace defined in
+    // src/store/module/coaches/index.js with   namespaced: true,
+    // Beacause we do not want all coachs we can use find method
+    this.selectedCoach = this.$store.getters["coaches/coaches"].find(
+      (coach) => coach.id === this.id
+    );
   },
   computed: {
     fullName() {
@@ -56,15 +70,6 @@ export default {
     contactLink() {
       return this.$route.path + "/" + this.id + "/contact";
     },
-  },
-  // selectedCoach will be hydrated with data included the store
-  // check Data in coaches namespace defined in
-  // src/store/module/coaches/index.js with   namespaced: true,
-  // Beacause we do not want all coachs we can use find method
-  created() {
-    this.selectedCoach = this.$store.getters["coaches/coaches"].find(
-      (coach) => coach.id === this.id
-    );
   },
 };
 </script>
