@@ -15,7 +15,7 @@
         <base-button mode="outline">
           Refresh
         </base-button>
-        <base-button to="/register">
+        <base-button link to="/register">
           Register as Coach
         </base-button>
       </div>
