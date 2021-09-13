@@ -1,13 +1,13 @@
-import mutations from "./mutations.js";
-import actions from "./mutations.js";
+import mutations from './mutations.js';
+import actions from './actions.js';
 
 export default {
   namespaced: true,
   state() {
     return {
-      requests: [],
+      requests: []
     };
   },
   mutations,
-  actions,
+  actions
 };
