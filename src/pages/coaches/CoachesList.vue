@@ -90,6 +90,13 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+    loadCoaches() {
+      // 'namepace/actionName"
+      this.$store.dispatch("coaches/getCoaches");
+    },
+  },
+  created() {
+    this.loadCoaches();
   },
 };
 </script>
