@@ -1,6 +1,10 @@
 import axios from "axios";
-import { CoachesUrl, CoacheUrl } from ".";
-import { getCoachesErrors } from "../utils/errors.utils";
+import { CoachesUrl, CoacheUrl, ContactCoacheUrl, getRequestUrl } from ".";
+import {
+  getCoachesErrors,
+  getRequestCoachesErrors,
+  postRequestCoachesErrors,
+} from "../utils/errors.utils";
 
 // GET
 
@@ -27,6 +31,39 @@ export const postRequest = async (userId, data) => {
 export const getCoaches = async () => {
   const res = await axios.get(CoachesUrl()).catch((error) => {
     const errors = getCoachesErrors(error);
+    return errors;
+  });
+  return res;
+};
+
+// POST
+
+/**
+ *
+ * @param {Number} userId the User Id
+ * @param {Object} bodyContent data from requests' actions.js
+ * @returns {Object} res reponse from DB
+ */
+export const postRequestCoaches = async (coachId, bodyContent) => {
+  const res = await axios
+    .post(ContactCoacheUrl(coachId), bodyContent)
+    .catch((error) => {
+      const errors = postRequestCoachesErrors(error);
+      return errors;
+    });
+  return res;
+};
+// GET
+
+/**
+ *
+ * @param {Number} userId the User Id
+ * @param {Object} bodyContent data from requests' actions.js
+ * @returns {Object} res reponse from DB
+ */
+export const getRequestCoaches = async (coachId) => {
+  const res = await axios.get(getRequestUrl(coachId)).catch((error) => {
+    const errors = getRequestCoachesErrors(error);
     return errors;
   });
   return res;
