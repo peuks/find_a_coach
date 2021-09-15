@@ -5,9 +5,7 @@ import getters from "./getters.js";
 export default {
   namespaced: true,
   state() {
-    return {
-      requests: [],
-    };
+    return { requests: [] };
   },
   mutations,
   actions,
