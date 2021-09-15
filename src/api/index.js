@@ -4,7 +4,7 @@ const bdd_url = process.env.VUE_APP_FIRE_BASE_DB;
 // Coaches
 const coaches = "coaches";
 
-export const CoachesUrl = () => `${bdd_url}/${coaches}.json`;
+export const CoachesUrl = () => `${bdd_url}/${coaches}.jon`;
 
 export const CoacheUrl = (userId) => `${bdd_url}/${coaches}/${userId}.json`;
 
