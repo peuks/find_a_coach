@@ -9,10 +9,17 @@ const requests = "requests";
 
 export const CoachesUrl = () => `${bdd_url}/${coaches}.json`;
 
-export const CoacheUrl = (userId) => `${bdd_url}/${coaches}/${userId}.json`;
+export const CoacheUrl = (userId) => {
+  return `${bdd_url}/${coaches}/${userId}.json`;
+};
 
 export const ContactCoacheUrl = (coachId) =>
-  `${bdd_url} ${requests}/${coachId}.json`;
+  `${bdd_url}${requests}/${coachId}.json`;
+
+export const getRequestUrl = (coachId) => {
+  let url = `${bdd_url}${requests}/${coachId}.json`;
+  return url;
+};
 
 //Searched game
 // export const searchGameURL = (game_name) =>

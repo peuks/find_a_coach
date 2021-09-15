@@ -1,7 +1,8 @@
 import axios from "axios";
-import { CoachesUrl, CoacheUrl, ContactCoacheUrl } from ".";
+import { CoachesUrl, CoacheUrl, ContactCoacheUrl, getRequestUrl } from ".";
 import {
   getCoachesErrors,
+  getRequestCoachesErrors,
   postRequestCoachesErrors,
 } from "../utils/errors.utils";
 
@@ -50,5 +51,20 @@ export const postRequestCoaches = async (coachId, bodyContent) => {
       const errors = postRequestCoachesErrors(error);
       return errors;
     });
+  return res;
+};
+// GET
+
+/**
+ *
+ * @param {Number} userId the User Id
+ * @param {Object} bodyContent data from requests' actions.js
+ * @returns {Object} res reponse from DB
+ */
+export const getRequestCoaches = async (coachId) => {
+  const res = await axios.get(getRequestUrl(coachId)).catch((error) => {
+    const errors = getRequestCoachesErrors(error);
+    return errors;
+  });
   return res;
 };
