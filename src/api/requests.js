@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CoachesUrl, CoacheUrl } from ".";
+import { getCoachesErrors } from "../utils/errors.utils";
 
 // GET
 
@@ -24,7 +25,9 @@ export const postRequest = async (userId, data) => {
  * @returns {Object} res reponse from DB
  */
 export const getCoaches = async () => {
-  const res = await axios.get(CoachesUrl());
-  // console.log(res);
+  const res = await axios.get(CoachesUrl()).catch((error) => {
+    const errors = getCoachesErrors(error);
+    return errors;
+  });
   return res;
 };
