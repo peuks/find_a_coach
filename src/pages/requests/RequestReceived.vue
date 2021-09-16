@@ -13,7 +13,7 @@
           <h2>Requests Received</h2>
         </header>
         <base-spinner v-if="isLoading"></base-spinner>
-        <ul>
+        <ul v-else-if="hasRequests && !isLoading">
           <request-item
             v-for="req in receivedRequests"
             :key="req.id"
@@ -21,6 +21,7 @@
             :message="req.message"
           ></request-item>
         </ul>
+        <h3 v-else>You haven't received any requests yet!</h3>
       </base-card>
     </section>
   </div>
@@ -54,8 +55,7 @@ export default {
     async loadRequests() {
       this.isLoading = true;
       try {
-        const test = await this.$store.dispatch("requests/fetchRequests");
-        console.log(test);
+        await this.$store.dispatch("requests/fetchRequests");
       } catch (error) {
         this.error = error.message || "Something failed!";
       }

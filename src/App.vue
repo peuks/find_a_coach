@@ -1,17 +1,16 @@
 <template>
-  <!-- <div id="nav"> -->
   <the-header></the-header>
-  <router-view> </router-view>
-  <!-- <router-link to="/">Home</router-link> | -->
-  <!-- <router-link to="/about">About</router-link> -->
-  <!-- </div> -->
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 
 export default {
-  // Local component in App.vue because we only use it here
   components: {
     TheHeader,
   },
@@ -31,5 +30,29 @@ html {
 
 body {
   margin: 0;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
